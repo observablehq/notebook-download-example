@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<body>
+<style>
+
+body {
+  padding: 20px;
+  max-width: 960px;
+  margin: auto;
+}
+
+</style>
+<h1>My bar chart</h1>
+<script type="module">
+
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "./@d3/bar-chart/index.js";
+
+const runtime = new Runtime();
+const main = runtime.module(define, name => {
+  if (name === "chart") {
+    return new Inspector(document.body.appendChild(document.createElement("DIV")));
+  }
+});
+
+</script>

@@ -1,0 +1,14 @@
+{
+  "name": "@d3/bar-chart",
+  "main": "09403b146bada149@229.js",
+  "version": "229.0.0",
+  "homepage": "https://observablehq.com/@d3/bar-chart",
+  "author": {
+    "name": "D3",
+    "url": "https://observablehq.com/@d3"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
