@@ -1,25 +1,50 @@
 <!DOCTYPE html>
-<body>
+<meta charset="utf-8">
+<title>Bar Chart Race</title>
 <style>
 
+:root {
+  --sans-serif: sans-serif;
+}
+
 body {
-  padding: 20px;
   max-width: 960px;
-  margin: auto;
+  margin: 1em auto;
+  font-family: var(--sans-serif);
 }
 
 </style>
-<h1>My bar chart</h1>
+<h1>The most populous cities in the world, 1575–2020</h1>
+<p>Data: <a href="https://gist.githubusercontent.com/johnburnmurdoch/4199dbe55095c3e13de8d5b2e5e5307a">John Burn–Murdoch</a></p>
+<div name="viewof replay"></div>
+<div name="chart"></div>
+<script src="d3.js"></script>
 <script type="module">
 
-import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-import define from "./@d3/bar-chart/index.js";
+import {Runtime, Library, Inspector} from "./runtime.js";
+import barChartRace from "./bar-chart-race/index.js";
 
-const runtime = new Runtime();
-const main = runtime.module(define, name => {
-  if (name === "chart") {
-    return new Inspector(document.body.appendChild(document.createElement("DIV")));
+// Initialize the Observable Runtime, telling it to use our local copy of D3
+// rather than loading one from a CDN.
+const runtime = new Runtime(new Library(name => {
+  switch (name) {
+    case "d3@6": return d3;
+  }
+}));
+
+// Show the output of the “chart” and “viewof replay” cells in the DIV elements
+// with the corresponding name.
+const main = runtime.module(barChartRace, name => {
+  if (["chart", "viewof replay"].includes(name)) {
+    return new Inspector(document.querySelector(`[name='${name}']`));
   }
 });
+
+// Redefine the “data” cell to use our CSV file (in the same format).
+main.redefine("data", d3.csv("./cities.csv", d3.autoType));
+
+// Redefine the “k” cell to disable tweening between keyframes. (This dataset is
+// already interpolated.)
+main.redefine("k", 1);
 
 </script>
