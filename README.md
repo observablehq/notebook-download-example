@@ -77,6 +77,12 @@ main.redefine("k", 1);
 </script>
 ```
 
-If you’re doing this in the context of a larger web application, also keep in mind that you can call [*runtime*.dispose](https://github.com/observablehq/runtime/blob/master/README.md#runtime_dispose) to clean up if you no longer want to show the chart. For more advanced techniques, see our tutorial on [embedding Observable in React](https://next.observablehq.com/@observablehq/how-to-embed-a-notebook-in-a-react-app).
+To see it live:
+
+https://observablehq.github.io/notebook-download-example/
+
+## Further Resources
+
+If you’re doing this in the context of a larger web application, you can call [*runtime*.dispose](https://github.com/observablehq/runtime/blob/master/README.md#runtime_dispose) to clean up if you no longer want to show the chart. For more advanced techniques, including two-way coordination between vanilla JavaScript and Observable JavaScript, see our tutorial on [embedding Observable in React](https://next.observablehq.com/@observablehq/how-to-embed-a-notebook-in-a-react-app).
 
 If you’d prefer live embeds to standalone code, see our [embed examples](https://github.com/observablehq/examples).
